@@ -66,18 +66,18 @@ extern dictSQL* sql;
             [self.ukBtn setEnabled:YES];
         }
     });
-    tpcount = [[arr objectForKey:@"tpcount"] integerValue];
-    aArr = [[NSMutableArray alloc]init];
+    tpcount = [[arr objectForKey:@"tpcount"] intValue];
+    aArr = [[NSMutableArray alloc] init];
     if (tpcount > 1) {
         NSString* string = [arr objectForKey:@"phraseids"];
         for (int i = 0; i < tpcount; i++) {
-            if ([string rangeOfString:@"+"].location != 2147483647) {
-                [aArr addObject:@([[string substringToIndex:[string rangeOfString:@"+"].location] intValue])];
-                string = [string substringFromIndex:[string rangeOfString:@"+"].location + 1];
-            }else if ([string rangeOfString:@"+"].location == 2147483647) {
+            NSUInteger a = [string rangeOfString:@"+"].location;
+            if (a != NSIntegerMax) {
+                [aArr addObject:@([[string substringToIndex:a] intValue])];
+                string = [string substringFromIndex:a + 1];
+            }else if (a == NSIntegerMax) {
                 [aArr addObject:@([[string substringFromIndex:0] intValue])];
             }
-            NSLog(@"%@",aArr[i]);
         }
     }else{
         self.nextBtn.enabled = NO;
@@ -87,7 +87,6 @@ extern dictSQL* sql;
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    NSLog(request.URL.absoluteString,nil);
     if (![request.URL.absoluteString  isEqualToString: @"about:blank"]) {
         return  NO;
 //        dispatch_async(queue, ^{

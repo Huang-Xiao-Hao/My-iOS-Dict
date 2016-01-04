@@ -25,6 +25,17 @@ dictSQL* sql;
     sql = [[dictSQL alloc] initWithDatabase:@"cald4.dat"];
     _textInputer.delegate = self;
     dictArray = [[NSMutableArray alloc]init];
+    if ([[[UIDevice currentDevice] model] isEqualToString:@"iPad"]) {
+        self.tableView.rowHeight = 64;
+    }else{
+        self.tableView.rowHeight = 44 * self.view.bounds.size.width/320;
+    }
+    for (UIView* o in self.view.subviews) {
+        if (o.tag == 200 && [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] == NSOrderedAscending) {
+            o.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1];
+            break;
+        }
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,7 +68,7 @@ dictSQL* sql;
     wordCell* cell = [tableView dequeueReusableCellWithIdentifier:@"wordCell"];
     cell.cellTitle.text = [cellDict objectForKey:@"word"];
     cell.cellSubtitle.text = [cellDict objectForKey:@"wordclass"];
-    if ([[cellDict objectForKey:@"nextflag"] integerValue] == 1) {
+    if ([[cellDict objectForKey:@"nextflag"] intValue] == 1) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }else{
         cell.accessoryType = UITableViewCellAccessoryNone;

@@ -20,7 +20,7 @@
     NSData *ukSound;
     NSData *usSound;
     AVAudioPlayer *player;
-    int tpnow,tpcount;
+    unsigned int tpnow,tpcount;
     NSMutableArray* aArr;
 }
 @property (weak, nonatomic) IBOutlet UIWebView *webView;

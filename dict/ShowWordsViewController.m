@@ -27,7 +27,7 @@ extern dictSQL* sql;
     dictArr = [[NSMutableArray alloc] init];
     queue = dispatch_queue_create( "queue2", DISPATCH_QUEUE_SERIAL );
     dispatch_async(queue, ^{
-        dictArr = [sql findWordListBy:[arr objectForKey:@"indexid"] limits:[[arr objectForKey:@"explanecount"] integerValue]];
+        dictArr = [sql findWordListBy:[arr objectForKey:@"indexid"] limits:[[arr objectForKey:@"explanecount"] intValue]];
         [self performSelectorOnMainThread:@selector(reloadTableView) withObject:nil waitUntilDone:NO];
     });
 }
@@ -48,7 +48,7 @@ extern dictSQL* sql;
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     dictCell* cell = [tableView dequeueReusableCellWithIdentifier:@"moreCell"];
-    if ([[dictArr[indexPath.item] objectForKey:@"tpcount"] integerValue] != 1) {
+    if ([[dictArr[indexPath.item] objectForKey:@"tpcount"] intValue] != 1) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.cellTitle.text =  [dictArr[indexPath.item] objectForKey:@"wordclass"];
