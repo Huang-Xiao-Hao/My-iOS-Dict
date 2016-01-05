@@ -32,7 +32,7 @@ dictSQL* sql;
     }
     for (UIView* o in self.view.subviews) {
         if (o.tag == 200 && [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] == NSOrderedAscending) {
-            o.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1];
+            o.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1];
             break;
         }
     }

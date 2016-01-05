@@ -17,8 +17,8 @@
     int fontSize;
     __block NSDictionary* meanDict;
     dictSQL* soundSQL;
-    NSData *ukSound;
-    NSData *usSound;
+    NSData *ukSound,*usSound;
+    NSString *ukPath, *usPath;
     AVAudioPlayer *player;
     unsigned int tpnow,tpcount;
     NSMutableArray* aArr;

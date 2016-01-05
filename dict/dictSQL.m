@@ -121,7 +121,6 @@
 }
 
 - (NSData*)getTheSound:(NSString*)word withCode:(NSString*)code {
-    NSLog(word,nil);
     NSString* sql = [[NSString alloc]initWithFormat:@"select * from v where f == '%@%@'",word,code];
     sqlite3_stmt* statement;
     NSData * sound;
@@ -133,7 +132,6 @@
     }else{
         NSLog(@"%d /n %@",sqlite3_prepare_v2(sqlDB, [sql UTF8String], -1, &statement, nil),sql);
     }
-//    NSLog(@"%@",sound);
     return sound;
 }
 

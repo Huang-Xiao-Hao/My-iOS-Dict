@@ -37,7 +37,6 @@ extern dictSQL* sql;
         }
         meanDict = [sql getTheMean:[arr objectForKey:@"indexid"] index: indexs];
         NSString * string = [meanDict objectForKey:@"mean"];
-        NSLog(string,nil);
         /*
          * hw   被解释单词
          * pos  词性
@@ -52,6 +51,11 @@ extern dictSQL* sql;
         string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:#666666}.en{font-size:%d;}.tc{font-size:%d;}.sc{font-size:%d;}td{font-size:%d;}a{color:#3399FF;text-decoration:none;font-style:italic;}body{font-size:%d;}</style>%@",fontSize,fontSize,fontSize,fontSize,fontSize,string];
         [self.webView loadHTMLString:string baseURL:nil];
     });
+    
+    NSArray *dicArr = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask , true);
+    NSString* dirPath = dicArr[0];
+    ukPath = [NSString stringWithFormat:@"%@/%@",dirPath,@"uksound.wav"];
+    usPath = [NSString stringWithFormat:@"%@/%@",dirPath,@"ussound.wav"];
     dispatch_sync(queue, ^{
         usSound = [soundSQL getTheSound:[meanDict objectForKey:@"us"] withCode:@"s"];
         ukSound = [soundSQL getTheSound:[meanDict objectForKey:@"uk"] withCode:@"k"];
@@ -59,11 +63,13 @@ extern dictSQL* sql;
             [self.usBtn setEnabled:NO];
         }else{
             [self.usBtn setEnabled:YES];
+            [usSound writeToFile:usPath atomically:YES];
         }
         if (ukSound == nil) {
             [self.ukBtn setEnabled:NO];
         }else{
             [self.ukBtn setEnabled:YES];
+            [ukSound writeToFile:ukPath atomically:YES];
         }
     });
     tpcount = [[arr objectForKey:@"tpcount"] intValue];
@@ -118,18 +124,16 @@ extern dictSQL* sql;
 }
 
 - (IBAction)playUKsound:(id)sender {
-    dispatch_async(queue, ^{
-        NSError *playerError;
-        player = [[AVAudioPlayer alloc] initWithData:ukSound error:&playerError];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:ukPath] error:nil];
         [player prepareToPlay];
         [player play];
     });
 }
 
 - (IBAction)playUSsound:(id)sender {
-    dispatch_async(queue, ^{
-        NSError *playerError;
-        player = [[AVAudioPlayer alloc] initWithData:usSound error:&playerError];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:usPath] error:nil];
         [player prepareToPlay];
         [player play];
     });
