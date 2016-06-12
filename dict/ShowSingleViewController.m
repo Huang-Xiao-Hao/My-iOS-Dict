@@ -19,6 +19,12 @@ extern dictSQL* sql;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //保存字典尺寸
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"fontsize"] != nil) {
+        fontSize = [[userDefaults objectForKey:@"fontsize"] integerValue];
+        [self.adjustBar setValue:(float)fontSize];
+    }
     self.navigationController.toolbarHidden = NO;
     // Do any additional setup after loading the view.
     self.navigationItem.title = [arr objectForKey:@"word"];
@@ -26,7 +32,7 @@ extern dictSQL* sql;
     queue = dispatch_queue_create( "queue", DISPATCH_QUEUE_SERIAL );
     meanDict = [[NSDictionary alloc]init];
     fontSize = 18;
-    [self.adjustBar addTarget:self action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
+    [self.adjustBar addTarget:self action:@selector(valueChanged) forControlEvents:UIControlEventValueChanged];
     dispatch_sync(queue, ^{
         int indexs = -1;
         for (NSString* str in [arr allKeys]) {
@@ -48,7 +54,7 @@ extern dictSQL* sql;
          * lab  不知道是什么
          * body 所有内容
          */
-        string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:#666666}.en{font-size:%d;}.tc{font-size:%d;}.sc{font-size:%d;}td{font-size:%d;}a{color:#3399FF;text-decoration:none;font-style:italic;}body{font-size:%d;}</style>%@",fontSize,fontSize,fontSize,fontSize,fontSize,string];
+        string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:#666666}a{color:#3399FF;text-decoration:none;font-style:italic;}</style>%@",string];
         [self.webView loadHTMLString:string baseURL:nil];
     });
     
@@ -88,22 +94,28 @@ extern dictSQL* sql;
     }else{
         self.nextBtn.enabled = NO;
         self.previousBtn.enabled = NO;
+        NSLog(@"%@",self.navigationItem.rightBarButtonItems);
     }
     tpnow = 0;
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     if (![request.URL.absoluteString  isEqualToString: @"about:blank"]) {
-        return  NO;
-//        dispatch_async(queue, ^{
-//            NSMutableArray* tarr = [sql findWordListBy:[request.URL.absoluteString substringFromIndex:4] limit:1];
-//            NSMutableDictionary* dict = tarr.lastObject;
-//            NSString * string = [[sql getTheMean:[dict objectForKey:@"indexid"] index:0] objectForKey:@"meam"];
-//            string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:666666}.en{font-size:%d;}.tc{font-size:%d;}.sc{font-size:%d;}td{font-size:%d;}a{color:#3399FF;text-decoration:none;font-style:italic;}body{font-size:%d;}</style>%@",fontSize,fontSize,fontSize,fontSize,fontSize,string];
-//            [self.webView loadHTMLString:string baseURL:nil];
-//            self.navigationItem.title = [dict objectForKey:@"word"];
-//        });
-//        return NO;
+        //选词跳转功能
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSMutableArray* tarr = [sql findWordListBy:[request.URL.absoluteString substringFromIndex:4] limit:1];
+            NSMutableDictionary* dict = tarr.lastObject;
+            if ([[dict objectForKey:@"nextflag"] integerValue] > 0) {
+                
+            }else{
+                NSString * string = [[sql getTheMean:[dict objectForKey:@"indexid"] index:-1] objectForKey:@"meam"];
+                string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:#666666}a{color:#3399FF;text-decoration:none;font-style:italic;}</style>%@",string];
+                NSLog(string,nil);
+                [self.webView loadHTMLString:string baseURL:nil];
+                self.navigationItem.title = [dict objectForKey:@"word"];
+            }
+        });
+        return NO;
     }else{
         return YES;
     }
@@ -115,17 +127,18 @@ extern dictSQL* sql;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)updateValue:(id)sender {
-    if ((int)self.adjustBar.value != fontSize) {
-        fontSize = (int)self.adjustBar.value;
-        NSString *str = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%' ",fontSize];
-        [_webView stringByEvaluatingJavaScriptFromString:str];
-    }
+- (void)valueChanged {
+    fontSize = (int)self.adjustBar.value;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setInteger:fontSize forKey:@"fontsize"];
+    NSString *str = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%' ",fontSize];
+    [_webView stringByEvaluatingJavaScriptFromString:str];
 }
 
 - (IBAction)playUKsound:(id)sender {
     dispatch_async(dispatch_get_main_queue(), ^{
-        player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:ukPath] error:nil];
+        NSError *playerError;
+        player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:ukPath] error:&playerError];
         [player prepareToPlay];
         [player play];
     });
@@ -133,7 +146,8 @@ extern dictSQL* sql;
 
 - (IBAction)playUSsound:(id)sender {
     dispatch_async(dispatch_get_main_queue(), ^{
-        player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:usPath] error:nil];
+        NSError *playerError;
+        player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:usPath] error:&playerError];
         [player prepareToPlay];
         [player play];
     });
@@ -153,7 +167,7 @@ extern dictSQL* sql;
         dispatch_async(dispatch_get_main_queue(), ^{
             meanDict = [sql getTheMean:[aArr objectAtIndex:tpnow] index: 0];
             NSString * string = [meanDict objectForKey:@"mean"];
-            string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:#666666}.en{font-size:%d;}.tc{font-size:%d;}.sc{font-size:%d;}td{font-size:%d;}a{color:#3399FF;text-decoration:none;font-style:italic;}body{font-size:%d;}</style>%@",fontSize,fontSize,fontSize,fontSize,fontSize,string];
+            string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:#666666}a{color:#3399FF;text-decoration:none;font-style:italic;}</style>%@",string];
             [self.webView loadHTMLString:string baseURL:nil];
         });
     }else{
@@ -161,10 +175,14 @@ extern dictSQL* sql;
         dispatch_async(dispatch_get_main_queue(), ^{
             meanDict = [sql getTheMean:[aArr objectAtIndex:tpnow] index: 0];
             NSString * string = [meanDict objectForKey:@"mean"];
-            string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:#666666}.en{font-size:%d;}.tc{font-size:%d;}.sc{font-size:%d;}td{font-size:%d;}a{color:#3399FF;text-decoration:none;font-style:italic;}body{font-size:%d;}</style>%@",fontSize,fontSize,fontSize,fontSize,fontSize,string];
+            string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:#666666}a{color:#3399FF;text-decoration:none;font-style:italic;}</style>%@",string];
             [self.webView loadHTMLString:string baseURL:nil];
         });
     }
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self valueChanged];
 }
 
 - (IBAction)nextMean:(id)sender {
@@ -173,7 +191,7 @@ extern dictSQL* sql;
         dispatch_async(dispatch_get_main_queue(), ^{
             meanDict = [sql getTheMean:[aArr objectAtIndex:tpnow] index: 0];
             NSString * string = [meanDict objectForKey:@"mean"];
-            string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:#666666}.en{font-size:%d;}.tc{font-size:%d;}.sc{font-size:%d;}td{font-size:%d;}a{color:#3399FF;text-decoration:none;font-style:italic;}body{font-size:%d;}</style>%@",fontSize,fontSize,fontSize,fontSize,fontSize,string];
+            string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:#666666}a{color:#3399FF;text-decoration:none;font-style:italic;}</style>%@",string];
             [self.webView loadHTMLString:string baseURL:nil];
         });
     }else{
@@ -181,7 +199,7 @@ extern dictSQL* sql;
         dispatch_async(dispatch_get_main_queue(), ^{
             meanDict = [sql getTheMean:[aArr objectAtIndex:tpnow] index: 0];
             NSString * string = [meanDict objectForKey:@"mean"];
-            string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:#666666}.en{font-size:%d;}.tc{font-size:%d;}.sc{font-size:%d;}td{font-size:%d;}a{color:#3399FF;text-decoration:none;font-style:italic;}body{font-size:%d;}</style>%@",fontSize,fontSize,fontSize,fontSize,fontSize,string];
+            string = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none}.hw{color:#3399FF;font-style:normal;}.def{font-style:italic;color:#3399FF;}.pos{color:#009900;}.pron{font-weight:light}.lab{color:#666666}a{color:#3399FF;text-decoration:none;font-style:italic;}</style>%@",string];
             [self.webView loadHTMLString:string baseURL:nil];
         });
     }}

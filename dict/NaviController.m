@@ -18,7 +18,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending) {
-        self.navigationBar.tintColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1];
+//        self.navigationBar.tintColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1];
+        self.navigationBar.tintColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     }
 }
 

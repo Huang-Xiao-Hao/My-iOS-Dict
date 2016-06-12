@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textInputer;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)removeAllInput:(id)sender;
+- (IBAction)goToSetting:(id)sender;
 
 @end
 

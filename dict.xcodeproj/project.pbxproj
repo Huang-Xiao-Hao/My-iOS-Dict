@@ -7,33 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D09875D1C39795900AAAA10 /* NaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D09875C1C39795900AAAA10 /* NaviController.m */; };
+		1D09875A1C3945F300AAAA10 /* NaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0987591C3945F300AAAA10 /* NaviController.m */; };
 		1D14D1EF1C25951400EA826E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D14D1EE1C25951400EA826E /* main.m */; };
 		1D14D1F21C25951400EA826E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D14D1F11C25951400EA826E /* AppDelegate.m */; };
 		1D14D1F51C25951400EA826E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D14D1F41C25951400EA826E /* ViewController.m */; };
-		1D14D1F81C25951400EA826E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D14D1F61C25951400EA826E /* Main.storyboard */; };
 		1D14D1FA1C25951400EA826E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D14D1F91C25951400EA826E /* Assets.xcassets */; };
-		1D14D1FD1C25951400EA826E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D14D1FB1C25951400EA826E /* LaunchScreen.storyboard */; };
 		1D14D2091C25A7E600EA826E /* cald4.dat in Resources */ = {isa = PBXBuildFile; fileRef = 1D14D2071C25A7E600EA826E /* cald4.dat */; };
 		1D14D20A1C25A7E600EA826E /* cald4.v in Resources */ = {isa = PBXBuildFile; fileRef = 1D14D2081C25A7E600EA826E /* cald4.v */; };
 		1D14D20C1C25A7F800EA826E /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D14D20B1C25A7F800EA826E /* libsqlite3.0.tbd */; };
 		1D14D20F1C25AE4700EA826E /* dictSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D14D20E1C25AE4700EA826E /* dictSQL.m */; };
 		1D4A972F1C32FC9000FE15A3 /* ShowWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4A972E1C32FC9000FE15A3 /* ShowWordsViewController.m */; };
 		1DDC6A7F1C2EDA7000D76C40 /* ShowSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC6A7E1C2EDA7000D76C40 /* ShowSingleViewController.m */; };
+		A695B1EF1D07BB1F000630B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A695B1ED1D07BB1F000630B2 /* Main.storyboard */; };
+		A695B1F21D07BB9E000630B2 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A695B1F01D07BB9E000630B2 /* Launch Screen.storyboard */; };
+		A695B1F51D07C027000630B2 /* DictSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A695B1F41D07C027000630B2 /* DictSetViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D09875B1C39795900AAAA10 /* NaviController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaviController.h; sourceTree = "<group>"; };
-		1D09875C1C39795900AAAA10 /* NaviController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaviController.m; sourceTree = "<group>"; };
+		1D0987581C3945F300AAAA10 /* NaviController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaviController.h; sourceTree = "<group>"; };
+		1D0987591C3945F300AAAA10 /* NaviController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaviController.m; sourceTree = "<group>"; };
 		1D14D1EA1C25951400EA826E /* dict.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dict.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D14D1EE1C25951400EA826E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1D14D1F01C25951400EA826E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D14D1F11C25951400EA826E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D14D1F31C25951400EA826E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		1D14D1F41C25951400EA826E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		1D14D1F71C25951400EA826E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1D14D1F91C25951400EA826E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1D14D1FC1C25951400EA826E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D14D1FE1C25951400EA826E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D14D2071C25A7E600EA826E /* cald4.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = cald4.dat; sourceTree = "<group>"; };
 		1D14D2081C25A7E600EA826E /* cald4.v */ = {isa = PBXFileReference; lastKnownFileType = file; path = cald4.v; sourceTree = "<group>"; };
@@ -44,6 +43,10 @@
 		1D4A972E1C32FC9000FE15A3 /* ShowWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWordsViewController.m; sourceTree = "<group>"; };
 		1DDC6A7D1C2EDA7000D76C40 /* ShowSingleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSingleViewController.h; sourceTree = "<group>"; };
 		1DDC6A7E1C2EDA7000D76C40 /* ShowSingleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSingleViewController.m; sourceTree = "<group>"; };
+		A695B1EE1D07BB1F000630B2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
+		A695B1F11D07BB9E000630B2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		A695B1F31D07C027000630B2 /* DictSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictSetViewController.h; sourceTree = "<group>"; };
+		A695B1F41D07C027000630B2 /* DictSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictSetViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +84,15 @@
 			children = (
 				1D14D1F01C25951400EA826E /* AppDelegate.h */,
 				1D14D1F11C25951400EA826E /* AppDelegate.m */,
+				1D0987581C3945F300AAAA10 /* NaviController.h */,
+				1D0987591C3945F300AAAA10 /* NaviController.m */,
 				1D14D1F31C25951400EA826E /* ViewController.h */,
 				1D14D1F41C25951400EA826E /* ViewController.m */,
-				1D09875B1C39795900AAAA10 /* NaviController.h */,
-				1D09875C1C39795900AAAA10 /* NaviController.m */,
-				1D14D1F61C25951400EA826E /* Main.storyboard */,
+				A695B1F31D07C027000630B2 /* DictSetViewController.h */,
+				A695B1F41D07C027000630B2 /* DictSetViewController.m */,
+				A695B1ED1D07BB1F000630B2 /* Main.storyboard */,
+				A695B1F01D07BB9E000630B2 /* Launch Screen.storyboard */,
 				1D14D1F91C25951400EA826E /* Assets.xcassets */,
-				1D14D1FB1C25951400EA826E /* LaunchScreen.storyboard */,
 				1D14D1FE1C25951400EA826E /* Info.plist */,
 				1D14D1ED1C25951400EA826E /* Supporting Files */,
 				1D14D20D1C25AE4700EA826E /* dictSQL.h */,
@@ -145,10 +150,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = "Huang-Xiao-Hao";
+				ORGANIZATIONNAME = "黄小昊";
 				TargetAttributes = {
 					1D14D1E91C25951400EA826E = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 3K22BYZ4CC;
 					};
 				};
 			};
@@ -159,6 +165,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 1D14D1E11C25951300EA826E;
 			productRefGroup = 1D14D1EB1C25951400EA826E /* Products */;
@@ -176,9 +183,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D14D2091C25A7E600EA826E /* cald4.dat in Resources */,
-				1D14D1FD1C25951400EA826E /* LaunchScreen.storyboard in Resources */,
+				A695B1EF1D07BB1F000630B2 /* Main.storyboard in Resources */,
 				1D14D1FA1C25951400EA826E /* Assets.xcassets in Resources */,
-				1D14D1F81C25951400EA826E /* Main.storyboard in Resources */,
+				A695B1F21D07BB9E000630B2 /* Launch Screen.storyboard in Resources */,
 				1D14D20A1C25A7E600EA826E /* cald4.v in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,11 +198,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D14D20F1C25AE4700EA826E /* dictSQL.m in Sources */,
+				A695B1F51D07C027000630B2 /* DictSetViewController.m in Sources */,
 				1D4A972F1C32FC9000FE15A3 /* ShowWordsViewController.m in Sources */,
 				1D14D1F51C25951400EA826E /* ViewController.m in Sources */,
 				1D14D1F21C25951400EA826E /* AppDelegate.m in Sources */,
 				1D14D1EF1C25951400EA826E /* main.m in Sources */,
-				1D09875D1C39795900AAAA10 /* NaviController.m in Sources */,
+				1D09875A1C3945F300AAAA10 /* NaviController.m in Sources */,
 				1DDC6A7F1C2EDA7000D76C40 /* ShowSingleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,20 +211,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1D14D1F61C25951400EA826E /* Main.storyboard */ = {
+		A695B1ED1D07BB1F000630B2 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1D14D1F71C25951400EA826E /* Base */,
+				A695B1EE1D07BB1F000630B2 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		1D14D1FB1C25951400EA826E /* LaunchScreen.storyboard */ = {
+		A695B1F01D07BB9E000630B2 /* Launch Screen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1D14D1FC1C25951400EA826E /* Base */,
+				A695B1F11D07BB9E000630B2 /* zh-Hans */,
 			);
-			name = LaunchScreen.storyboard;
+			name = "Launch Screen.storyboard";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -310,12 +318,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				INFOPLIST_FILE = dict/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hxh.cambdict;
+				PRODUCT_BUNDLE_IDENTIFIER = com.terahealthy.cambdict;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -326,12 +336,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				INFOPLIST_FILE = dict/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hxh.cambdict;
+				PRODUCT_BUNDLE_IDENTIFIER = com.terahealthy.cambdict;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -10,7 +10,7 @@
 
 @implementation dictSQL
 
-///初始化数据库
+//初始化数据库
 - (id)initWithDatabase:(NSString*)database {
     NSString * url = [NSString stringWithFormat:@"%@/%@",[NSBundle mainBundle].bundlePath,database];
     if (sqlite3_open([url UTF8String], &sqlDB) != SQLITE_OK) {
@@ -34,7 +34,7 @@
         if (sqlite3_prepare_v2(sqlDB, [sql UTF8String], -1, &statement, nil) == SQLITE_OK) {
             NSMutableDictionary * tempDiction = [[NSMutableDictionary alloc]init];
             while (sqlite3_step(statement) == SQLITE_ROW) {
-                //            ///第一个值
+                //第一个值
                 int indexid = sqlite3_column_int(statement, 0);
                 [tempDiction setValue:@(indexid) forKey:@"indexid"];
                 char * words = (char *)sqlite3_column_text(statement, 1);
@@ -60,7 +60,7 @@
     NSString* sql;
     sqlite3_stmt* statement;
     int limits = 0;
-    ///处理多项解释
+    //处理多项解释
     for (int indexi = 1;  indexi <= limit; indexi++) {
         sql = [[NSString alloc]initWithFormat:@"select * from gw where indexid == '%@%d'",indexID,indexi];
         if (sqlite3_prepare_v2(sqlDB, [sql UTF8String], -1, &statement, nil) == SQLITE_OK) {
@@ -96,7 +96,7 @@
 - (NSDictionary*)getTheMean:(NSString*)indexid index:(int)iID{
     NSMutableDictionary* resultDict = [[NSMutableDictionary alloc] init];
     NSString* sql;
-    if (iID == -1) {
+    if (iID == -1) {//单义词，无需跳转
         sql = [[NSString alloc]initWithFormat:@"select * from hwpage where indexid == '%@%d'",indexid,1];
     }else{
         sql = [[NSString alloc]initWithFormat:@"select * from hwpage where indexid == '%@'",indexid];
@@ -132,6 +132,7 @@
     }else{
         NSLog(@"%d /n %@",sqlite3_prepare_v2(sqlDB, [sql UTF8String], -1, &statement, nil),sql);
     }
+//    NSLog(@"length : %d\n%@",[sound length],sound);
     return sound;
 }
 

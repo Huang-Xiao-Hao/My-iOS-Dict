@@ -139,4 +139,10 @@ dictSQL* sql;
     [self.textInputer resignFirstResponder];
     [self.textInputer setText:@""];
 }
+
+- (IBAction)goToSetting:(id)sender {
+    [self performSegueWithIdentifier:@"dictSetting" sender:nil];
+    
+}
+
 @end
