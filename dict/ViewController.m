@@ -123,8 +123,14 @@ dictSQL* sql;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    UIViewController* view = segue.destinationViewController;
-    [view setValue:sender forKey:@"arr"];
+	if ([segue.identifier isEqualToString:@"dictSetting"]) {
+		UIViewController* view = segue.destinationViewController;
+		[view setValue:sender forKey:@"setDiction"];
+	}
+	if ([segue.identifier isEqualToString:@"showFromMain"] || [segue.identifier isEqualToString:@"moreWordShow"]) {
+		UIViewController* view = segue.destinationViewController;
+		[view setValue:sender forKey:@"arr"];
+	}
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
@@ -143,6 +149,10 @@ dictSQL* sql;
 - (IBAction)goToSetting:(id)sender {
     [self performSegueWithIdentifier:@"dictSetting" sender:nil];
     
+}
+
+- (IBAction)goToHistoryList:(id)sender {
+	[self performSegueWithIdentifier:@"searchHistory" sender:nil];
 }
 
 @end

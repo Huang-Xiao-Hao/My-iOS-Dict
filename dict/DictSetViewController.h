@@ -22,7 +22,7 @@
 @end
 
 @interface DictSetViewController : UIViewController<UITableViewDelegate,UITableViewDataSource> {
-     NSMutableDictionary* arr;
+     NSMutableDictionary* setDiction;
 }
 @property (weak, nonatomic) IBOutlet UITableView *setTab;
 

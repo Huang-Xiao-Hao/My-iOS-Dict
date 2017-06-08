@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)removeAllInput:(id)sender;
 - (IBAction)goToSetting:(id)sender;
+- (IBAction)goToHistoryList:(id)sender;
 
 @end
 

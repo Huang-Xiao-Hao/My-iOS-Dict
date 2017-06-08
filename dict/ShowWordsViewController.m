@@ -37,6 +37,7 @@ extern dictSQL* sql;
     self.navigationController.toolbarHidden = YES;
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -51,9 +52,11 @@ extern dictSQL* sql;
     if ([[dictArr[indexPath.item] objectForKey:@"tpcount"] intValue] != 1) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    cell.cellTitle.text =  [dictArr[indexPath.item] objectForKey:@"wordclass"];
-    NSString * body = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none} body{color : #0050D0}</style>%@",[dictArr[indexPath.item] objectForKey:@"wordmean"]];
-    [cell.cellSubtitle loadHTMLString:body baseURL:nil];
+//    cell.cellTitle.text =  [dictArr[indexPath.item] objectForKey:@"wordclass"];
+    NSString * body = [NSString stringWithFormat:@"<style type=\"text/css\">.tc{display : none} body{color : #0050D0;text-align : left}</style>%@",[dictArr[indexPath.item] objectForKey:@"wordmean"]];
+	NSMutableAttributedString * attrString = [[NSMutableAttributedString alloc] initWithData:[body dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+	[attrString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} range:NSMakeRange(0, attrString.length)];
+	cell.wordContent.attributedText = attrString;
     return cell;
 }
 

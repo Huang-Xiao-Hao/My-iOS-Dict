@@ -12,6 +12,7 @@
 @interface dictCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *cellTitle;
 @property (weak, nonatomic) IBOutlet UIWebView *cellSubtitle;
+@property (weak, nonatomic) IBOutlet UILabel *wordContent;
 
 @end
 

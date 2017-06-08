@@ -22,7 +22,7 @@ extern dictSQL* sql;
     //保存字典尺寸
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"fontsize"] != nil) {
-        fontSize = [[userDefaults objectForKey:@"fontsize"] integerValue];
+        fontSize = [[userDefaults objectForKey:@"fontsize"] intValue];
         [self.adjustBar setValue:(float)fontSize];
     }
     self.navigationController.toolbarHidden = NO;
@@ -138,7 +138,7 @@ extern dictSQL* sql;
 - (IBAction)playUKsound:(id)sender {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSError *playerError;
-        player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:ukPath] error:&playerError];
+        player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:ukPath] error:&playerError];
         [player prepareToPlay];
         [player play];
     });
@@ -147,7 +147,7 @@ extern dictSQL* sql;
 - (IBAction)playUSsound:(id)sender {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSError *playerError;
-        player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:usPath] error:&playerError];
+        player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:usPath] error:&playerError];
         [player prepareToPlay];
         [player play];
     });
