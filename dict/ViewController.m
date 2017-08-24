@@ -31,7 +31,7 @@ dictSQL* sql;
         self.tableView.rowHeight = 44 * self.view.bounds.size.width/320;
     }
     for (UIView* o in self.view.subviews) {
-        if (o.tag == 200 && [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] == NSOrderedAscending) {
+        if (o.tag == 200 && [[[UIDevice currentDevice] systemVersion] compare:@"7.0.0" options:NSNumericSearch] == NSOrderedAscending) {
             o.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1];
             break;
         }
